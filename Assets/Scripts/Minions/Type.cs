@@ -1,7 +1,34 @@
 using System.Collections.Generic;
-public class Type 
+using UnityEngine;
+
+[System.Serializable]
+[CreateAssetMenu(fileName = "NewType", menuName = "Type/New")]
+
+public class Type : ScriptableObject
 {
-    public string name;
-    public List<Type> Weakness;
-	public List<Type> Strength;
+    public TypeEnum Name;
+    public List<TypeEnum> Weakness;
+    public List<TypeEnum> Strength;
+}
+
+public enum TypeEnum
+{
+	Normal,
+	Fire,
+	Water,
+	Grass,
+	Electric,
+	Ice,
+	Fighting,
+	Poison,
+	Ground,
+	Flying,
+	Psychic,
+	Bug,
+	Rock,
+	Ghost,
+	Dragon,
+	Dark,
+	Steel,
+	Fairy
 }

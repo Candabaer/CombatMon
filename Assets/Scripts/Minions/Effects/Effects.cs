@@ -1,8 +1,9 @@
 using UnityEngine;
-public interface Effects
+[System.Serializable]
+public abstract class Effects : ScriptableObject
 {
-	public string Name { get; set; }
-	public string Description {  get; set; }
+	public string Name;
+	public string Description;
 
-	public void ApplyEffect();
+	public abstract void ApplyEffect();
 }

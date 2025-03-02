@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20518979f56faf419f895e7fa3f20f1, type: 3}
+  m_Name: "Gl\xFChschwanzda"
+  m_EditorClassIdentifier: 
+  Name: "Gl\xFChschwanzda"
+  Description: Sein Pimmel brennt morgens beim Pissen
+  LifePoints: 69
+  Stats:
+    Physical_Strength: 100
+    Physical_Defense: 100
+    Special_Strength: 100
+    Special_Defense: 100
+    Body: 100
+    Speed: 100
+  Abilities:
+  - {fileID: 11400000, guid: e3dc9767a87243d4f92a3bd9d2cbba5e, type: 2}
+  - {fileID: 11400000, guid: 50767a8669342a14e9780685c10fe2b2, type: 2}
+  - {fileID: 11400000, guid: c4f2cebf19ea41548aa7f34388c07ba8, type: 2}
+  - {fileID: 11400000, guid: 3d269f27184320c42a76c24e7661830e, type: 2}
+  Types:
+  - {fileID: 11400000, guid: 0a49e8ec674f617418a0aac08ce30dc2, type: 2}
+  Effects: []

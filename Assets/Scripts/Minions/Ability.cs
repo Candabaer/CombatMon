@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewAbility", menuName = "Ability/Create New")]
 [System.Serializable]
 public class Ability : ScriptableObject
 {
@@ -9,8 +10,8 @@ public class Ability : ScriptableObject
 	public int UsagePoints;
 	public int Power;
 	public int Accuracy;
-	public List<Type> Types = new();
-	public List<Effects> Effects = new();
+	public List<Type> Types;
+	public List<Effects> Effects;
 
 	public Ability()
 	{

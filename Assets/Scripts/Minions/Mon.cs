@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class Mon 
+[CreateAssetMenu(fileName = "NewMon", menuName = "Mon/Create New Mon")]
+public class Mon : ScriptableObject
 {
 	public string Name;
 	public string Description;
-	public Stats Stats { get; set; }
-	public List<Ability> Abilities { get; set; }
-	public List<Type> Types { get; set; }
-	public List<Effects> Effects { get; set; }
+	public int LifePoints;
+	[SerializeField] public Stats Stats { get; set; }
+	[SerializeField] public List<Ability> Abilities { get; set; } = new List<Ability>(4);
+	[SerializeField] public List<Type> Types { get; set; }
+	[SerializeField] public List<Effects> Effects { get; set; }
 }

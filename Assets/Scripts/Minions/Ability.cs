@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class Ability
+[System.Serializable]
+public class Ability : ScriptableObject
 {
 	public string Name;
 	public string Description;
@@ -10,10 +12,8 @@ public class Ability
 	public List<Type> Types = new();
 	public List<Effects> Effects = new();
 
-
 	public Ability()
 	{
 
 	}
-
 }

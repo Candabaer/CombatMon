@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46932a83d0e718488b96655848ccfb9, type: 3}
   m_Name: Pimplsap
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  UsagePoints: 0
-  Power: 0
-  Accuracy: 0
+  Name: Pimpslap
+  Description: Pimpslap
+  UsagePoints: 85
+  Power: 90
+  Accuracy: 80
   Types: []
   Effects: []

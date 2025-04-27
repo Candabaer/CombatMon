@@ -17,4 +17,9 @@ public class Ability : ScriptableObject
 	{
 
 	}
+
+	internal void Apply(List<Mon> Target)
+	{
+		throw new System.NotImplementedException();
+	}
 }

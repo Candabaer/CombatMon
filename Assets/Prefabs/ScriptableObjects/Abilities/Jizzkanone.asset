@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46932a83d0e718488b96655848ccfb9, type: 3}
   m_Name: Jizzkanone
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  UsagePoints: 0
-  Power: 0
-  Accuracy: 0
-  Types: []
+  Name: Jizzkanone
+  Description: Jizzkanone
+  UsagePoints: 5
+  Power: 70
+  Accuracy: 100
+  Types:
+  - {fileID: 0}
   Effects: []

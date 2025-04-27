@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20518979f56faf419f895e7fa3f20f1, type: 3}
   m_Name: Pimpam
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  LifePoints: 0
+  Name: Pimp
+  Description: Pamp
+  LifePoints: 100
   Stats:
-    Physical_Strength: 0
-    Physical_Defense: 0
-    Special_Strength: 0
-    Special_Defense: 0
-    Body: 0
-    Speed: 0
-  Abilities: []
-  Types: []
+    Physical_Strength: 100
+    Physical_Defense: 100
+    Special_Strength: 100
+    Special_Defense: 100
+    Body: 100
+    Speed: 100
+  Abilities:
+  - {fileID: 11400000, guid: 23b36238799f38341a848a4f7a3c186b, type: 2}
+  - {fileID: 11400000, guid: d268d63b76040324082f5060543263fd, type: 2}
+  - {fileID: 11400000, guid: 3d269f27184320c42a76c24e7661830e, type: 2}
+  - {fileID: 11400000, guid: c4f2cebf19ea41548aa7f34388c07ba8, type: 2}
+  Types:
+  - {fileID: 11400000, guid: 02407872df1f27340a7d34f1e677be61, type: 2}
   Effects: []

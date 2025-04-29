@@ -215,6 +215,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mon: {fileID: 11400000, guid: 265db72ec8522ca40b662e40527654f2, type: 2}
+  MonInstance:
+    Name: 
+    Description: 
+    LifePoints: 0
+    IsActive: 0
+    SortOrder: 0
+    Stats:
+      Physical_Strength: 0
+      Physical_Defense: 0
+      Special_Strength: 0
+      Special_Defense: 0
+      Body: 0
+      Speed: 0
+    Types: []
   Collider: {fileID: 304109786}
   OnSelected:
     m_PersistentCalls:
@@ -606,6 +620,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mon: {fileID: 11400000, guid: 2e012bed3cef4904ca79995efb15aecc, type: 2}
+  MonInstance:
+    Name: 
+    Description: 
+    LifePoints: 0
+    IsActive: 0
+    SortOrder: 0
+    Stats:
+      Physical_Strength: 0
+      Physical_Defense: 0
+      Special_Strength: 0
+      Special_Defense: 0
+      Body: 0
+      Speed: 0
+    Types: []
   Collider: {fileID: 590905383}
   OnSelected:
     m_PersistentCalls:
@@ -880,7 +908,7 @@ MonoBehaviour:
   ButtonLayout: {fileID: 689884002}
   Button: {fileID: 5880288901934493683, guid: 988069b234ced84478edbaea3f2fbccd, type: 3}
   AttackButtons: []
-  OnSelected:
+  OnSelectedAttack:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &689884002

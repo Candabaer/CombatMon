@@ -14,24 +14,24 @@ public enum CombatState
 
 public class CombatController : MonoBehaviour
 {
-	public UnityEvent<Mon> OnSelected;
-	private Mon SelectedMon;
-	private Mon TargetMon;
-	private Ability SelectedAttack;
+	public UnityEvent<MonInstance> OnSelected;
+	private MonInstance SelectedMon;
+	private MonInstance TargetMon;
+	private AbilityInstance SelectedAttack;
 	private CombatState currentState = CombatState.WaitingForCharacter;
 	[SerializeField]
 	private CombatUI CombatUI;
 
 	private void Awake()
 	{
-		CombatUI.OnSelected.AddListener(OnAttackSelected);
+		CombatUI.OnSelectedAttack.AddListener(OnAttackSelected);
 	}
 
 	void Start()
 	{
 	}
 
-	public void OnCharacterSelected(Mon selectedMon)
+	public void OnCharacterSelected(MonInstance selectedMon)
 	{
 		if (currentState != CombatState.WaitingForCharacter)
 			return;
@@ -40,7 +40,7 @@ public class CombatController : MonoBehaviour
 		currentState = CombatState.WaitingForAbility;
 	}
 
-	public void OnAttackSelected(Ability selectedAttack)
+	public void OnAttackSelected(AbilityInstance selectedAttack)
 	{
 		if (currentState != CombatState.WaitingForAbility)
 			return;
@@ -49,7 +49,7 @@ public class CombatController : MonoBehaviour
 		currentState = CombatState.WaitingForTarget;
 	}
 
-	public void OnTargetSelected(Mon targetMon)
+	public void OnTargetSelected(MonInstance targetMon)
 	{
 		if (currentState != CombatState.WaitingForTarget)
 			return;

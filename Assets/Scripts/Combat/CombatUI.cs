@@ -12,9 +12,9 @@ public class CombatUI : MonoBehaviour
 	[SerializeField]
 	private Button Button;
 	public List<Button> AttackButtons = new();
-	private Mon currentMon;
+	private MonInstance currentMon;
 
-	public UnityEvent<Ability> OnSelected;
+	public UnityEvent<AbilityInstance> OnSelectedAttack;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -22,12 +22,12 @@ public class CombatUI : MonoBehaviour
 		this.gameObject.SetActive(false);
 	}
 
-	public void Activate(Mon selectedMon)
+	public void Activate(MonInstance selectedMon)
 	{
 		if (currentMon == selectedMon)
 		{
 			Debug.Log("Gleicher Mon, nichts machen.");
-			return; 
+			return;
 		}
 		currentMon = selectedMon;
 
@@ -52,15 +52,8 @@ public class CombatUI : MonoBehaviour
 		}
 	}
 
-	private void OnAttackButtonClicked(Ability selectedAbility)
+	private void OnAttackButtonClicked(AbilityInstance selectedAbility)
 	{
-		     OnSelected.Invoke(selectedAbility);
-	}
-
-
-	// Update is called once per frame
-	void Update()
-	{
-
+		OnSelectedAttack.Invoke(selectedAbility);
 	}
 }

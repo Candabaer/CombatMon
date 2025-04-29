@@ -17,9 +17,4 @@ public class Ability : ScriptableObject
 	{
 
 	}
-
-	internal void Apply(Mon Source, Mon Target)
-	{
-		Target.LifePoints -= Power;
-	}
 }

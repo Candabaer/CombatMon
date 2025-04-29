@@ -18,8 +18,8 @@ public class Ability : ScriptableObject
 
 	}
 
-	internal void Apply(List<Mon> Target)
+	internal void Apply(Mon Source, Mon Target)
 	{
-		throw new System.NotImplementedException();
+		Target.LifePoints -= Power;
 	}
 }

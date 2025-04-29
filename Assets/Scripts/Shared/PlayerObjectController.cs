@@ -14,6 +14,7 @@ public class GameObjectController : MonoBehaviour
     [SerializeField]
     public UnityEvent<Mon> OnSelected;
 
+
 	void OnMouseDown()
     {
         Debug.Log("LOLOLOL");

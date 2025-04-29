@@ -25,13 +25,13 @@ public class PlayerCombatController
 		Squad[inactiveIndex] = tmp;
 	}
 
-	public void Attack(int index, int ability, List<Mon> targets)
-	{
-		if (Squad[index].IsActive)
-		{
-			Squad[index].Abilities[ability].Apply(targets);
-		}
-	}
+	//public void Attack(int index, int ability, List<Mon> targets)
+	//{
+	//	if (Squad[index].IsActive)
+	//	{
+	//		Squad[index].Abilities[ability].Apply(targets);
+	//	}
+	//}
 
 	public void StartCombat()
 	{

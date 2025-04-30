@@ -4,11 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewDebuffEffect", menuName = "Effects/Debuff")]
 public class DamageOverTimeEffect : Effects
 {
-
-	public override void ApplyEffect()
-	{
-		throw new System.NotImplementedException();
-	}
+	public int Damage;
+	public int TurnsActive;
+	public DamageOverTimeEnum Type;
 }
 
 public enum DamageOverTimeEnum

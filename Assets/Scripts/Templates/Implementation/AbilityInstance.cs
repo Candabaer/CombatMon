@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,24 +8,27 @@ public class AbilityInstance : RuntimeInstance<Ability>
 	public int UsagePoints;
 	public int Power;
 	public int Accuracy;
-
 	public List<Type> Types;
-	public List<Effects> Effects;
+	public List<EffectInstance> Effects;
 
-	public AbilityInstance(Ability abilities) : base(abilities)
+	public AbilityInstance(Ability ability) : base(ability)
 	{
-		Name = abilities.Name;
-		Description = abilities.Description;
-		UsagePoints = abilities.UsagePoints;
-		Power = abilities.Power;
-		Accuracy = abilities.Accuracy;
-		Types = abilities.Types;
-		Effects = abilities.Effects;
+		Name = ability.Name;
+		Description = ability.Description;
+		UsagePoints = ability.UsagePoints;
+		Power = ability.Power;
+		Accuracy = ability.Accuracy;
+		Types = ability.Types;
+		Effects = new();
+
+		foreach (Effects effect in ability.Effects)
+		{
+			Effects.Add(EffectFactory.CreateEffect(effect));
+		}
 	}
-	
+
 	public void Apply(MonInstance source, MonInstance target)
 	{
-		Debug.Log($"{source.Name} macht {target.Name}, {Power} viel schaden");
-		target.LifePoints -= Power;
+
 	}
 }

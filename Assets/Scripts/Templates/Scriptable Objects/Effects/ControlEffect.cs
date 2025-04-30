@@ -7,12 +7,7 @@ namespace Assets.Scripts.Minions
 
 	public class ControlEffect : Effects
 	{
-		public Stats EffectedStats { get; set; }
-		
-		public override void ApplyEffect()
-		{
-			throw new System.NotImplementedException();
-		}
+		public ControlEffectEnum Type { get; set; }
 	}
 	public enum ControlEffectEnum
 	{

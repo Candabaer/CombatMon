@@ -32,8 +32,7 @@ public class MonInstance : RuntimeInstance<Mon>
 			Types.Add(new TypeInstance(a));
 
 		foreach (var a in template.Effects)
-			AppliedEffects.Add(new EffectInstance(a));
-
+			AppliedEffects.Add(EffectFactory.CreateEffect(a));
 	}
 
 	public void GetAttacked(Ability ability)

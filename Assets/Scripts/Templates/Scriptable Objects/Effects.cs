@@ -4,6 +4,5 @@ public abstract class Effects : ScriptableObject
 {
 	public string Name;
 	public string Description;
-
-	public abstract void ApplyEffect();
+	public int Duration;
 }

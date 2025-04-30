@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      chrFemaleCivilian2Idle1_0: -2468123826181574111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

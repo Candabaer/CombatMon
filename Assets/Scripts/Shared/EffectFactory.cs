@@ -1,7 +1,5 @@
 using Assets.Scripts.Minions;
-using NUnit.Framework;
 using System;
-using UnityEngine;
 
 public static class EffectFactory
 {

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,12 +16,14 @@ public enum CombatState
 public class CombatController : MonoBehaviour
 {
 	public UnityEvent<MonInstance> OnSelected;
+	private int TurnCounter = 0;
 	private MonInstance SelectedMon;
 	private MonInstance TargetMon;
 	private AbilityInstance SelectedAttack;
 	private CombatState currentState = CombatState.WaitingForCharacter;
 	[SerializeField]
 	private CombatUI CombatUI;
+
 
 	private void Awake()
 	{

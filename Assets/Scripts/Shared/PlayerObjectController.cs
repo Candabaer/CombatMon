@@ -10,6 +10,7 @@ public class GameObjectController : MonoBehaviour
 	public Mon Mon;
 	[SerializeField]
 	public MonInstance MonInstance;
+
 	[Header("Rest")]
 	[SerializeField]
 	Collider2D Collider;

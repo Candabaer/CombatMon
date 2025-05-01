@@ -18,4 +18,5 @@ MonoBehaviour:
   Power: 80
   Accuracy: 100
   Types: []
-  Effects: []
+  Effects:
+  - {fileID: 11400000, guid: ae0ddf2135cc12440ac028351fdf3faa, type: 2}

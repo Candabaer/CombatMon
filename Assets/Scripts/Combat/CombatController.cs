@@ -1,72 +1,50 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 public enum CombatState
 {
-	WaitingForCharacter,
-	WaitingForAbility,
-	WaitingForTarget,
-	PerformingAction,
-	EnemyTurn,
-	Victory,
-	Defeat
+	WaitingForCharacter = 0,
+	WaitingForAbility = 1,
+	WaitingForTarget = 2
 }
 
 public class CombatController : MonoBehaviour
 {
 	public UnityEvent<MonInstance> OnSelected;
+	public List<GameObjectController> GameObjectControllers = new List<GameObjectController>();
+	public ActionQueue ActionQueue;
 	private int TurnCounter = 0;
-	private MonInstance SelectedMon;
-	private MonInstance TargetMon;
-	private AbilityInstance SelectedAttack;
+
 	private CombatState currentState = CombatState.WaitingForCharacter;
+
+
+
 	[SerializeField]
-	private CombatUI CombatUI;
+	public CombatUI CombatUI;
+
+	private ICombatPhase CurrentPhase;
+	public MonInstance SelectedMon { get; set; }
+	public MonInstance TargetMon { get; set; }
+	public AbilityInstance SelectedAbility { get; set; }
 
 
 	private void Awake()
 	{
-		CombatUI.OnSelectedAttack.AddListener(OnAttackSelected);
+		var go = GameObject.FindGameObjectsWithTag("Player").ToList();
+		foreach (var goc in go)
+		{
+			GameObjectControllers.Add(goc.GetComponent<GameObjectController>());
+		}
+		SetPhase(new MonSelectionPhase());
 	}
 
-	void Start()
+	public void SetPhase(ICombatPhase newPhase)
 	{
-	}
-
-	public void OnCharacterSelected(MonInstance selectedMon)
-	{
-		if (currentState != CombatState.WaitingForCharacter)
-			return;
-		SelectedMon = selectedMon;
-		OnSelected.Invoke(selectedMon);
-		currentState = CombatState.WaitingForAbility;
-	}
-
-	public void OnAttackSelected(AbilityInstance selectedAttack)
-	{
-		if (currentState != CombatState.WaitingForAbility)
-			return;
-		Debug.Log($"attack selected {selectedAttack.Name}");
-		SelectedAttack = selectedAttack;
-		currentState = CombatState.WaitingForTarget;
-	}
-
-	public void OnTargetSelected(MonInstance targetMon)
-	{
-		if (currentState != CombatState.WaitingForTarget)
-			return;
-		Debug.Log($"Target selected {targetMon.Name}");
-		SelectedAttack.Apply(SelectedMon, targetMon);
-		currentState = CombatState.PerformingAction;
-	}
-
-
-	// Update is called once per frame
-	void Update()
-	{
-
-
-
+		CurrentPhase?.Exit();
+		CurrentPhase = newPhase;
+		CurrentPhase.Enter(this);
 	}
 }

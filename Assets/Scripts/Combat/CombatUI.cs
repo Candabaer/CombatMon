@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -54,5 +55,10 @@ public class CombatUI : MonoBehaviour
 	private void OnAttackButtonClicked(AbilityInstance selectedAbility)
 	{
 		OnSelectedAttack.Invoke(selectedAbility);
+	}
+
+	internal void Deactivate()
+	{
+		this.gameObject.SetActive(false);
 	}
 }

@@ -25,7 +25,6 @@ public class GameObjectController : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		Debug.Log("LOLOLOL");
 		OnSelected.Invoke(this.MonInstance);
 	}
 

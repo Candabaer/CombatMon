@@ -12,6 +12,14 @@ public class ActionQueueEntry
 	public MonInstance Target;
 	public AbilityInstance ChosenAbility;
 	public int Speed => Source.Stats.Speed;
+
+	public ActionQueueEntry(MonInstance source, MonInstance target, AbilityInstance chosenAbility)
+	{
+		Source = source;
+		Target = target;
+		ChosenAbility = chosenAbility;
+	}
+
 }
 
 public class ActionQueue

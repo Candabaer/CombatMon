@@ -4,23 +4,16 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum CombatState
-{
-	WaitingForCharacter = 0,
-	WaitingForAbility = 1,
-	WaitingForTarget = 2
-}
-
 public class CombatController : MonoBehaviour
 {
 	public UnityEvent<MonInstance> OnSelected;
-	public List<GameObjectController> GameObjectControllers = new List<GameObjectController>();
+	//public List<GameObjectController> GameObjectControllers = new List<GameObjectController>();
 	public ActionQueue ActionQueue;
 	private int TurnCounter = 0;
 
-	private CombatState currentState = CombatState.WaitingForCharacter;
-
-
+	//public PlayerCombatController PlayerCombatController;
+	public PlayerCombatController ActivePlayer;
+	public PlayerCombatController InActivePlayer;
 
 	[SerializeField]
 	public CombatUI CombatUI;
@@ -33,12 +26,9 @@ public class CombatController : MonoBehaviour
 
 	private void Awake()
 	{
-		var go = GameObject.FindGameObjectsWithTag("Player").ToList();
-		foreach (var goc in go)
-		{
-			GameObjectControllers.Add(goc.GetComponent<GameObjectController>());
-		}
-		SetPhase(new MonSelectionPhase());
+		ActivePlayer = new PlayerCombatController("PlayerA", new List<string> { "PlayerB"});
+		InActivePlayer = new PlayerCombatController("PlayerB", new List<string> { "PlayerA" });
+		SetPhase(new StartCombat());
 	}
 
 	public void SetPhase(ICombatPhase newPhase)
@@ -46,5 +36,10 @@ public class CombatController : MonoBehaviour
 		CurrentPhase?.Exit();
 		CurrentPhase = newPhase;
 		CurrentPhase.Enter(this);
+	}
+
+	public void AddActionQueue()
+	{
+		ActionQueue.AddToQueue(new ActionQueueEntry(SelectedMon, TargetMon, SelectedAbility));
 	}
 }

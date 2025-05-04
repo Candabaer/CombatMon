@@ -13,15 +13,14 @@ public class MonSelectionPhase : ICombatPhase
 		Debug.Log("Entering Player Mon Selection Phase");
 		CombatController = controller;
 
-		foreach (var go in CombatController.GameObjectControllers)
+		foreach (var go in CombatController.ActivePlayer.PlayerMons)
 		{
 			go.OnSelected.AddListener(HandleMonSelection);
 		}
-		Debug.Log($"Subscribing all Click Events from MONS");
 	}
 	public void Exit()
 	{
-		foreach (var go in CombatController.GameObjectControllers)
+		foreach (var go in CombatController.ActivePlayer.PlayerMons)
 		{
 			go.OnSelected.RemoveAllListeners();
 		}

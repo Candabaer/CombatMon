@@ -2,15 +2,18 @@
 
 internal class SwitchTurnsPhase : ICombatPhase
 {
-	public CombatController CombatController { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+	public CombatController CombatController { get; set;  }
 
 	public void Enter(CombatController controller)
 	{
-		throw new System.NotImplementedException();
+		CombatController = controller;
+		var tmpPlayer = CombatController.ActivePlayer;
+		CombatController.ActivePlayer = CombatController.InActivePlayer;
+		CombatController.InActivePlayer = tmpPlayer;
+		CombatController.SetPhase(new MonSelectionPhase());
 	}
 
 	public void Exit()
 	{
-		throw new System.NotImplementedException();
 	}
 }

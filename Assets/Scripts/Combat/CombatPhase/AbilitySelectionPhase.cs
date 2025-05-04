@@ -10,7 +10,6 @@ public class AbilitySelectionPhase : ICombatPhase
 		CombatController = controller;
 		CombatController.CombatUI.Activate(CombatController.SelectedMon);
 		CombatController.CombatUI.OnSelectedAttack.AddListener(AbilitySelection);
-		Debug.Log("Acctivaded UI subscribed to UI Events");
 	}
 
 	public void Exit()

@@ -46,6 +46,19 @@ public class ActionQueue
 
 	public ActionQueueEntry Peek()
 	{
-		return Queue.First();
+		var x = Queue.FirstOrDefault();
+		return x;
+	}
+
+	public bool QueueFull(List<GameObjectController> gameObjectControllers)
+	{
+
+		var q = new HashSet<MonInstance>(Queue.Select(q => q.Source));
+		foreach (var item in gameObjectControllers)
+		{
+			if (!q.Contains(item.MonInstance))
+				return false;
+		}
+		return true;
 	}
 }

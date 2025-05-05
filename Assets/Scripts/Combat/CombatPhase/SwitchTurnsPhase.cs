@@ -10,6 +10,13 @@ internal class SwitchTurnsPhase : ICombatPhase
 		var tmpPlayer = CombatController.ActivePlayer;
 		CombatController.ActivePlayer = CombatController.InActivePlayer;
 		CombatController.InActivePlayer = tmpPlayer;
+		CombatController.AddActionQueue();
+
+		if (CombatController.QueueFull())
+		{
+			CombatController.SetPhase(new ExecuteRound());
+		}
+
 		CombatController.SetPhase(new MonSelectionPhase());
 	}
 

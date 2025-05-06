@@ -40,14 +40,11 @@ public class ControlEffectInstance : EffectInstance
 			case ControlEffectEnum.Sleep:
 				//throw new System.NotImplementedException();
 				if (UnityEngine.Random.Range(0, 101) < target.Stats.Body)
-				{
 					target.IsActive = false;
-				}
 				else
 					Remove(target);
 				break;
 			case ControlEffectEnum.Freeze:
-
 				break;
 			case ControlEffectEnum.Flinch:
 				target.IsActive = false;

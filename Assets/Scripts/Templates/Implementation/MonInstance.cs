@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,7 +9,7 @@ public class MonInstance : RuntimeInstance<Mon>
 	public string Name;
 	public string Description;
 	public int LifePoints;
-	public bool IsActive = false;
+	public bool IsActive = true;
 	public int SortOrder;
 
 	public Stats Stats;
@@ -35,10 +37,18 @@ public class MonInstance : RuntimeInstance<Mon>
 			AppliedEffects.Add(EffectFactory.CreateEffect(a));
 	}
 
-	public void GetAttacked(Ability ability)
+	public bool CanAct()
 	{
-		Debug.Log($"I'm getting hurt {LifePoints}");
-		LifePoints -= ability.Power;
-		Debug.Log($"I'm GOTTING hurt {LifePoints}");
+		foreach (var e in AppliedEffects.OfType<ControlEffectInstance>())
+			e.Tick(this);
+		return IsActive;
+	}
+
+	public void IsAlive()
+	{
+		if(LifePoints <= 0)
+		{
+
+		}
 	}
 }

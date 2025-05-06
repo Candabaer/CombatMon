@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 [System.Serializable]
 public class AbilityInstance : RuntimeInstance<Ability>
@@ -31,9 +33,6 @@ public class AbilityInstance : RuntimeInstance<Ability>
 	public void Apply(MonInstance source, MonInstance target)
 	{
 		target.LifePoints -= Power;
-		foreach(var e in Effects)
-		{
-			e.Apply(source, target);
-		}
+		this.Effects.ForEach(e => e.Apply(source, target));
 	}
 }

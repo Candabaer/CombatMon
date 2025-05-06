@@ -1,18 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CombatController : MonoBehaviour
 {
-	//public UnityEvent<MonInstance> OnSelected;
-	//public List<GameObjectController> GameObjectControllers = new List<GameObjectController>();
 	public ActionQueue ActionQueue = new();
 	private int TurnCounter = 0;
 
-	//public PlayerCombatController PlayerCombatController;
 	public PlayerCombatController ActivePlayer;
 	public PlayerCombatController InActivePlayer;
 
@@ -58,7 +52,12 @@ public class CombatController : MonoBehaviour
 		while (ActionQueue.Peek() != null)
 		{
 			ActionQueueEntry TurnAction = ActionQueue.Dequeue();
-			TurnAction.ChosenAbility.Apply(TurnAction.Source, TurnAction.Target);
+
+			if (TurnAction.Source.CanAct())
+				TurnAction.ChosenAbility.Apply(TurnAction.Source, TurnAction.Target);
+
+			TurnAction.Target.IsAlive();
+			TurnCounter++;
 		}
 	}
 }

@@ -14,7 +14,7 @@ public class TargetSelectionPhase : ICombatPhase
 
 		foreach (var go in CombatController.ActivePlayer.EnemyMons)
 		{
-			//go.OnSelected.AddListener(HandleMonSelection);
+			go.OnSelected.AddListener(HandleMonSelection);
 		}
 	}
 
@@ -22,7 +22,7 @@ public class TargetSelectionPhase : ICombatPhase
 	{
 		foreach (var go in CombatController.ActivePlayer.EnemyMons)
 		{
-			//go.OnSelected.RemoveAllListeners();
+			go.OnSelected.RemoveAllListeners();
 		}
 		Debug.Log($"Now leaving Target Selection Phase");
 	}

@@ -3,25 +3,32 @@ using UnityEngine.Events;
 
 public class MonSelectionPhase : ICombatPhase
 {
+	public UnityEvent<MonInstance> OnSelected;
+
 	public CombatController CombatController { get; set; }
+
 
 	public void Enter(CombatController controller)
 	{
 		Debug.Log("Entering Player Mon Selection Phase");
 		CombatController = controller;
-		EventManager.Instance.Subscribe<MonSelectedEvent>(HandleMonSelection);
+
+		foreach (var go in CombatController.ActivePlayer.PlayerMons)
+		{
+			go.OnSelected.AddListener(HandleMonSelection);
+		}
 	}
 	public void Exit()
 	{
-		EventManager.Instance.Unsubscribe<MonSelectedEvent>(HandleMonSelection);
+		foreach (var go in CombatController.ActivePlayer.PlayerMons)
+		{
+			go.OnSelected.RemoveAllListeners();
+		}
 		Debug.Log("Leaving Mon Selection Phase");
 	}
 
-	public void HandleMonSelection(MonSelectedEvent SelectedMon)
+	public void HandleMonSelection(MonInstance selectedMon)
 	{
-		if (SelectedMon.AsAttackTarget)
-			return;
-		var selectedMon = SelectedMon.SelectedMon;
 		CombatController.SelectedMon = selectedMon;
 		Debug.Log($"SELECTED: {CombatController.SelectedMon.Name}" );
 

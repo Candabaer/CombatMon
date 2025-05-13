@@ -4,47 +4,34 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-	public static EventManager Instance { get ; private set; }
-	[SerializeField]
-	private Dictionary<System.Type, Delegate> EventTable = new();
+	private static EventManager _instance = new();
+	public static EventManager Instance => _instance;
 
-
-	private void Awake()
-	{
-		if (Instance == null)
-		{
-			Instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
-	}
+	private Dictionary<System.Type, Delegate> eventTable = new();
 
 	public void Subscribe<T>(Action<T> listener)
 	{
-		if (EventTable.TryGetValue(typeof(T), out var del))
-			EventTable[typeof(T)] = Delegate.Combine(del, listener);
+		if (eventTable.TryGetValue(typeof(T), out var del))
+			eventTable[typeof(T)] = Delegate.Combine(del, listener);
 		else
-			EventTable[typeof(T)] = listener;
+			eventTable[typeof(T)] = listener;
 	}
 
 	public void Unsubscribe<T>(Action<T> listener)
 	{
-		if (EventTable.TryGetValue(typeof(T), out var del))
+		if (eventTable.TryGetValue(typeof(T), out var del))
 		{
 			del = Delegate.Remove(del, listener);
 			if (del == null)
-				EventTable.Remove(typeof(T));
+				eventTable.Remove(typeof(T));
 			else
-				EventTable[typeof(T)] = del;
+				eventTable[typeof(T)] = del;
 		}
 	}
 
 	public void Raise<T>(T evt)
 	{
-		if (EventTable.TryGetValue(typeof(T), out var del))
+		if (eventTable.TryGetValue(typeof(T), out var del))
 			((Action<T>)del)?.Invoke(evt);
 	}
 }

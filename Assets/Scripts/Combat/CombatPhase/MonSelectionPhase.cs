@@ -19,13 +19,11 @@ public class MonSelectionPhase : ICombatPhase
 
 	public void HandleMonSelection(MonSelectedEvent SelectedMon)
 	{
-		if (SelectedMon.AsAttackTarget)
-			return;
+		EventManager.Instance.Raise(new MonAbilityUIEvent(SelectedMon.SelectedMon));
+
 		var selectedMon = SelectedMon.SelectedMon;
 		CombatController.SelectedMon = selectedMon;
-		Debug.Log($"SELECTED: {CombatController.SelectedMon.Name}" );
 
 		CombatController.SetPhase(new AbilitySelectionPhase());
-		Debug.Log("Setting AbilitySelection Phase");
 	}
 }

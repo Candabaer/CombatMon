@@ -38,5 +38,4 @@ public class GameObjectController : MonoBehaviour
 		//OnSelected.Invoke(this.MonInstance);
 		EventManager.Instance.Raise(new MonSelectedEvent(MonInstance, false));
 	}
-
 }

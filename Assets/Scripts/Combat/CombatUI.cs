@@ -16,14 +16,13 @@ public class CombatUI : MonoBehaviour
 	void Start()
 	{
 		this.gameObject.SetActive(false);
-		EventManager.Instance.Subscribe<MonSelectedEvent>(Activate);
+		EventManager.Instance.Subscribe<MonAbilityUIEvent>(Activate);
 	}
 
-	public void Activate(MonSelectedEvent SelectedMon)
+	public void Activate(MonAbilityUIEvent SelectedMon)
 	{
-		if (SelectedMon.AsAttackTarget)
-			return;
-		var selectedMon = SelectedMon.SelectedMon;
+
+		var selectedMon = SelectedMon.MonInstance;
 		if (currentMon == selectedMon)
 		{
 			Debug.Log("Gleicher Mon, nichts machen.");

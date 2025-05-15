@@ -24,16 +24,13 @@ public class CombatUI : MonoBehaviour
 
 		var selectedMon = SelectedMon.MonInstance;
 		if (currentMon == selectedMon)
-		{
-			Debug.Log("Gleicher Mon, nichts machen.");
 			return;
-		}
 		currentMon = selectedMon;
 
 		this.gameObject.SetActive(true);
 
-		Debug.Log($"Geklcikt wurde: {selectedMon.Name}");
-
+		if (selectedMon.Abilities.Count == AttackButtons.Count)
+			return;
 		foreach (var attack in selectedMon.Abilities)
 		{
 			var but = Instantiate(Button, ButtonLayout.transform);
@@ -51,7 +48,7 @@ public class CombatUI : MonoBehaviour
 		}
 	}
 	internal void Deactivate()
-	{
+	{ 
 		this.gameObject.SetActive(false);
 	}
 

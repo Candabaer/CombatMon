@@ -44,6 +44,7 @@ public class EventManager : MonoBehaviour
 
 	public void Raise<T>(T evt)
 	{
+		Debug.Log($"[EventManager] Raised event: {typeof(T).Name} ({evt})");
 		if (EventTable.TryGetValue(typeof(T), out var del))
 			((Action<T>)del)?.Invoke(evt);
 	}

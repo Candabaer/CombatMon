@@ -12,26 +12,19 @@ public class TargetSelectionPhase : ICombatPhase
 		Debug.Log($"Entered Target Selection Phase");
 		CombatController = controller;
 
-		foreach (var go in CombatController.ActivePlayer.EnemyMons)
-		{
-			go.OnSelected.AddListener(HandleMonSelection);
-		}
+		EventManager.Instance.Subscribe<MonSelectedEvent>(HandleMonSelection);
 	}
 
 	public void Exit()
 	{
-		foreach (var go in CombatController.ActivePlayer.EnemyMons)
-		{
-			go.OnSelected.RemoveAllListeners();
-		}
+		EventManager.Instance.Unsubscribe<MonSelectedEvent>(HandleMonSelection);
+
 		Debug.Log($"Now leaving Target Selection Phase");
 	}
 
-	private void HandleMonSelection(MonInstance target)
+	private void HandleMonSelection(MonSelectedEvent Target)
 	{
-		CombatController.TargetMon = target;
-		Debug.Log($"TARGETED MON: {CombatController.TargetMon.Name}");
+		CombatController.TargetMon = Target.SelectedMon;
 		CombatController.SetPhase(new SwitchTurnsPhase());
-		Debug.Log($"Target for Attack determined switching Phase");
 	}
 }

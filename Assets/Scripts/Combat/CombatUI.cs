@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CombatUI : MonoBehaviour
@@ -15,26 +12,25 @@ public class CombatUI : MonoBehaviour
 	public List<Button> AttackButtons = new();
 	private MonInstance currentMon;
 
-	public UnityEvent<AbilityInstance> OnSelectedAttack;
 
 	void Start()
 	{
 		this.gameObject.SetActive(false);
+		EventManager.Instance.Subscribe<MonAbilityUIEvent>(Activate);
 	}
 
-	public void Activate(MonInstance selectedMon)
+	public void Activate(MonAbilityUIEvent SelectedMon)
 	{
+
+		var selectedMon = SelectedMon.MonInstance;
 		if (currentMon == selectedMon)
-		{
-			Debug.Log("Gleicher Mon, nichts machen.");
 			return;
-		}
 		currentMon = selectedMon;
 
 		this.gameObject.SetActive(true);
 
-		Debug.Log($"Geklcikt wurde: {selectedMon.Name}");
-
+		if (selectedMon.Abilities.Count == AttackButtons.Count)
+			return;
 		foreach (var attack in selectedMon.Abilities)
 		{
 			var but = Instantiate(Button, ButtonLayout.transform);
@@ -51,14 +47,15 @@ public class CombatUI : MonoBehaviour
 			AttackButtons.Add(but);
 		}
 	}
+	internal void Deactivate()
+	{ 
+		this.gameObject.SetActive(false);
+	}
 
 	private void OnAttackButtonClicked(AbilityInstance selectedAbility)
 	{
-		OnSelectedAttack.Invoke(selectedAbility);
+		EventManager.Instance.Raise(new AbilitySelectedEvent(selectedAbility));
 	}
 
-	internal void Deactivate()
-	{
-		this.gameObject.SetActive(false);
-	}
+
 }

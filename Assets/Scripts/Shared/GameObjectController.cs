@@ -27,5 +27,4 @@ public class GameObjectController : MonoBehaviour
 	{
 		OnSelected.Invoke(this.MonInstance);
 	}
-
 }

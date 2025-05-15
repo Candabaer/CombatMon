@@ -19,7 +19,7 @@ public class CombatController : MonoBehaviour
 	public AbilityInstance SelectedAbility { get; set; }
 
 
-	private void Awake()
+	private void Start()
 	{
 		ActivePlayer = new PlayerCombatController("PlayerA", new List<string> { "PlayerB" });
 		InActivePlayer = new PlayerCombatController("PlayerB", new List<string> { "PlayerA" });

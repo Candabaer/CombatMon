@@ -48,7 +48,7 @@ public class MonInstance : RuntimeInstance<Mon>
 	{
 		if(LifePoints <= 0)
 		{
-
+			EventManager.Instance.Raise(new MonDiedEvent(this));
 		}
 	}
 }

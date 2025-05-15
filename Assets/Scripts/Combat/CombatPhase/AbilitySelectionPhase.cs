@@ -1,3 +1,4 @@
+using UnityEditor.Playables;
 using UnityEngine;
 
 public class AbilitySelectionPhase : ICombatPhase
@@ -8,19 +9,20 @@ public class AbilitySelectionPhase : ICombatPhase
 	{
 		Debug.Log("Entering Ability Selection Phase");
 		CombatController = controller;
-		CombatController.CombatUI.Activate(CombatController.SelectedMon);
-		CombatController.CombatUI.OnSelectedAttack.AddListener(AbilitySelection);
+		EventManager.Instance.Subscribe<AbilitySelectedEvent>(AbilitySelection);
 	}
 
 	public void Exit()
 	{
 		Debug.Log("Leaving Ability Phase");
-		CombatController.CombatUI.Deactivate();
-		CombatController.CombatUI.OnSelectedAttack.RemoveAllListeners();
+
+		EventManager.Instance.Unsubscribe<AbilitySelectedEvent>(AbilitySelection);
+		CombatController.CombatUI.Deactivate(); //TODO Besser über Event gesteuert? 
 	}
 
-	private void AbilitySelection(AbilityInstance ability)
+	private void AbilitySelection(AbilitySelectedEvent Ability)
 	{
+		var ability = Ability.SelectedAbility;
 		CombatController.SelectedAbility = ability;
 		Debug.Log($"SELECTED ABILITY: {CombatController.SelectedAbility.Name}");
 		CombatController.SetPhase(new TargetSelectionPhase());

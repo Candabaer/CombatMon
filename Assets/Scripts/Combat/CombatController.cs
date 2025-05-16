@@ -37,6 +37,7 @@ public class CombatController : MonoBehaviour
 	{
 		var actionItem = new ActionQueueEntry(SelectedMon, TargetMon, SelectedAbility);
 		ActionQueue.AddToQueue(actionItem);
+		EventManager.Instance.Raise(new ActionQueueAdd(actionItem));
 	}
 
 	public bool QueueFull()
